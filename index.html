@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etch-A-Sketch | An Odin Project Adventure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Galindo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Etch A Sketch</h1>
+      <div class="boxes-container"></div>
+      <div class="controls-container">
+        <div class="grid-size-container">
+          <label class="control-label" for="grid-size">grid size:</label>
+          <select name="grid-size" id="grid-size">
+            <option value="sixteen">16 x 16</option>
+            <option value="thirty-two">32 x 32</option>
+            <option value="sixty-four">64 x 64</option>
+          </select>
+        </div>
+
+        <div class="radio-buttons-container">
+          <p class="control-label">color:</p>
+          <label class="container"
+            >Black
+            <input type="radio" checked="checked" name="color" value="black" />
+          </label>
+          <label class="container"
+            >Random
+            <input type="radio" name="color" value="random" />
+          </label>
+        </div>
+
+        <div class="buttons-container">
+          <button id="erase">erase</button>
+          <button id="clear">clear</button>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

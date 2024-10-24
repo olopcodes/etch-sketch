@@ -1,0 +1,151 @@
+:root {
+  --color-red: #c81614;
+  --color-white: #f0f3f2;
+  --color-white-1: #faf4f3;
+  --color-yellow-dark: #f3bf48;
+  --color-yellow-light: #f9c653;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-yellow-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  /* min-height: 100vh; */
+}
+.box {
+  border: 1px solid;
+}
+
+h1 {
+  font-family: "Galindo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  font-size: 3rem;
+  color: var(--color-yellow-light);
+}
+
+.main-container {
+  background-color: var(--color-red);
+  width: 90%;
+  min-height: 100vh;
+  max-width: 1180px;
+  border-radius: 1rem;
+  padding: 4rem;
+  padding-top: 2rem;
+  margin: 2rem 0;
+}
+
+.boxes-container {
+  height: 80vh;
+  background-color: var(--color-white-1);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.controls-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.control-label {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: var(--color-yellow-light);
+}
+
+select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 5px;
+}
+
+.grid-size-container {
+  display: flex;
+  align-items: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label.container {
+  margin-bottom: 0;
+  justify-self: start;
+}
+
+.radio-buttons-container {
+  margin-right: auto;
+  min-width: 300px;
+  max-width: auto;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: 1rem;
+}
+
+.buttons-container button {
+  transition: 0.3s;
+  padding: 0.7rem 1.25rem;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--color-yellow-light);
+}
+
+.buttons-container button:last-child {
+  background-color: var(--color-white);
+}
+
+.buttons-container button:hover {
+  background: var(--color-yellow-dark);
+}
+
+.buttons-container button:last-child:hover {
+  background-color: var(--color-white);
+  opacity: 0.88;
+}
+
+/* radio buttons */
+label.container {
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-yellow-dark);
+  display: flex;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 600px) and (max-width: 940px) {
+  .controls-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
