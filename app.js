@@ -20,7 +20,7 @@ const getBrushColor = (value) => (value === "black" ? "black" : "random");
 const getNumberOfBoxes = (value) => value * value;
 
 const getBoxDimensions = (gridSize) => {
-  console.log(grid.offsetWidth / gridSize, grid.offsetHeight / gridSize);
+  console.log(grid.clientWidth / gridSize, grid.clientHeight / gridSize);
 
   console.log(grid.offsetWidth);
 
