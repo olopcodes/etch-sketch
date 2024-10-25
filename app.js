@@ -12,7 +12,7 @@ const getGridSize = (value) => {
 
   if (value === "thirty-two") return 32;
 
-  if (value === "sixty-four") return 64;
+  if (value === "forty") return 40;
 };
 
 const getBrushColor = (value) => (value === "black" ? "black" : "random");
@@ -25,8 +25,8 @@ const getBoxDimensions = (gridSize) => {
   console.log(grid.offsetWidth);
 
   return {
-    boxWidth: window.innerWidth / gridSize,
-    boxHeight: window.innerHeight / gridSize,
+    boxWidth: grid.clientWidth / gridSize,
+    boxHeight: grid.clientHeight / gridSize,
   };
 };
 
@@ -53,6 +53,7 @@ gridSizeOption.addEventListener("input", (e) => {
   gridSize = getGridSize(e.target.value);
   const numberOfBoxes = getNumberOfBoxes(gridSize);
   displayGrid(gridSize, numberOfBoxes);
+  console.log(grid.clientHeight / 32, "grid");
 });
 
 colorRadioButtons.forEach((btn) => {
