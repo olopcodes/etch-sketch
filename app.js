@@ -5,6 +5,8 @@ const colorRadioButtons = document.querySelectorAll("input[type='radio']");
 const grid = document.querySelector(".boxes-container");
 let brush = "black";
 let gridSize = 16;
+let numberOfBoxes;
+let erase = false;
 
 // functions ================================
 const getGridSize = (value) => {
@@ -20,10 +22,6 @@ const getBrushColor = (value) => (value === "black" ? "black" : "random");
 const getNumberOfBoxes = (value) => value * value;
 
 const getBoxDimensions = (gridSize) => {
-  console.log(grid.clientWidth / gridSize, grid.clientHeight / gridSize);
-
-  console.log(grid.offsetWidth);
-
   return {
     boxWidth: grid.clientWidth / gridSize,
     boxHeight: grid.clientHeight / gridSize,
@@ -47,13 +45,22 @@ const displayGrid = (size, value) => {
   }
 };
 
+const randomColor = () => {
+  return (
+    "#" +
+    Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, "0")
+      .toUpperCase()
+  );
+};
+
 // events ============================
 gridSizeOption.addEventListener("input", (e) => {
   grid.innerHTML = "";
   gridSize = getGridSize(e.target.value);
-  const numberOfBoxes = getNumberOfBoxes(gridSize);
+  numberOfBoxes = getNumberOfBoxes(gridSize);
   displayGrid(gridSize, numberOfBoxes);
-  console.log(grid.clientHeight / 32, "grid");
 });
 
 colorRadioButtons.forEach((btn) => {
@@ -63,7 +70,24 @@ colorRadioButtons.forEach((btn) => {
 });
 
 grid.addEventListener("mouseover", (e) => {
-  //   alert("hey");
+  brush = "random";
+  if (brush === "black" && !erase) {
+    e.target.style.backgroundColor = "black";
+  } else if (brush === "random" && !erase) {
+    e.target.style.backgroundColor = randomColor();
+  }
 });
+
+// alert user that etch a sketch is not responsive please resize
+window.addEventListener("resize", (e) => {
+  console.log("resize");
+  if (window.innerWidth === 700) {
+    console.log("stop");
+  }
+});
+
+// display grid at first
+numberOfBoxes = getNumberOfBoxes(gridSize);
+displayGrid(gridSize, numberOfBoxes);
 
 // send a message when screen size is below 600px
