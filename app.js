@@ -2,11 +2,11 @@
 const buttons = document.querySelectorAll(".buttons-container button");
 const gridSizeOption = document.querySelector("#grid-size");
 const colorRadioButtons = document.querySelectorAll("input[type='radio']");
+const modal = document.querySelector(".modal");
 const grid = document.querySelector(".boxes-container");
 let brush = "black";
 let gridSize = 16;
 let numberOfBoxes;
-let erase = false;
 
 // functions ================================
 const getGridSize = (value) => {
@@ -16,8 +16,6 @@ const getGridSize = (value) => {
 
   if (value === "forty") return 40;
 };
-
-const getBrushColor = (value) => (value === "black" ? "black" : "random");
 
 const getNumberOfBoxes = (value) => value * value;
 
@@ -38,6 +36,7 @@ const createBox = (size) => {
 };
 
 const displayGrid = (size, value) => {
+  grid.innerHTML = "";
   while (value > 0) {
     const box = createBox(size);
     grid.appendChild(box);
@@ -55,9 +54,24 @@ const randomColor = () => {
   );
 };
 
+const handleEraseButton = (e) => {
+  if (e.target.id === "erase" && !e.target.classList.contains("active")) {
+    brush = "white";
+    e.target.classList.add("active");
+  } else if (e.target.id === "erase" && e.target.classList.contains("active")) {
+    brush = "black";
+    e.target.classList.remove("active");
+  }
+};
+
+const clearGrid = (e) => {
+  if (e.target.id === "clear") {
+    displayGrid(gridSize, numberOfBoxes);
+  }
+};
+
 // events ============================
 gridSizeOption.addEventListener("input", (e) => {
-  grid.innerHTML = "";
   gridSize = getGridSize(e.target.value);
   numberOfBoxes = getNumberOfBoxes(gridSize);
   displayGrid(gridSize, numberOfBoxes);
@@ -65,24 +79,32 @@ gridSizeOption.addEventListener("input", (e) => {
 
 colorRadioButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    brush = getBrushColor(e.target.value);
+    brush = e.target.value;
   });
 });
 
 grid.addEventListener("mouseover", (e) => {
-  brush = "random";
-  if (brush === "black" && !erase) {
-    e.target.style.backgroundColor = "black";
-  } else if (brush === "random" && !erase) {
+  if (brush === "random") {
     e.target.style.backgroundColor = randomColor();
+  } else {
+    e.target.style.backgroundColor = brush;
   }
+});
+
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    handleEraseButton(e);
+    clearGrid(e);
+  });
 });
 
 // alert user that etch a sketch is not responsive please resize
 window.addEventListener("resize", (e) => {
-  console.log("resize");
-  if (window.innerWidth === 700) {
-    console.log("stop");
+  if (window.innerWidth <= 700) {
+    modal.classList.remove("hide");
+  }
+  if (window.innerWidth > 701) {
+    modal.classList.add("hide");
   }
 });
 
